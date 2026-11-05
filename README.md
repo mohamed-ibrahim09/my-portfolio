@@ -7,7 +7,7 @@ Personal portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS Certif
 ## What it shows
 
 - Experience: ALGOcas, DEPI, and NTI (Linux and CCNA) roles.
-- Projects: AI deepfake detection, MiniCloud deployment automation, and a cloud-native telecom platform built with Jenkins, Docker, Kubernetes and AWS.
+- Projects: AI deepfake detection, an AIOps incident copilot, an agentic travel assistant, backup and disaster recovery on AWS, and a cloud infrastructure dashboard.
 - Skills, certifications, services, and a contact form.
 - Light and dark themes, with a downloadable CV.
 

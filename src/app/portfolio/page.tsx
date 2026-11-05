@@ -103,58 +103,64 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    id: 'minicloud',
-    cardTitle: 'MiniCloud Deployment',
-    modalTitle: 'MiniCloud Deployment',
-    status: 'in_progress',
+    id: 'aiops',
+    cardTitle: 'AIOps Incident Copilot',
+    modalTitle: 'AIOps Incident Copilot: Human-Approved Auto-Remediation on AWS',
+    status: 'completed',
     description:
-      'GitHub webhook-based automated deployment system with automatic deployment on push, Docker image build & container restart, and deployment log tracking.',
-    tech: ['FastAPI', 'Docker', 'GitHub Webhooks', 'AWS EC2', 'Nginx'],
-    roleBadge: 'DevOps Lead',
-    github: '#',
+      'A CloudWatch alarm fires, Amazon Bedrock explains it in plain English, I approve on Telegram, and a fixed Systems Manager runbook rolls the release back. Deployed as one CloudFormation stack.',
+    tech: ['AWS CloudFormation', 'CloudWatch', 'Amazon Bedrock', 'Step Functions', 'Lambda', 'Systems Manager', 'Python'],
+    roleBadge: 'Personal project',
+    github: 'https://github.com/mohamed-ibrahim09/AIOps-Incident-Copilot',
     modalIntro:
-      'A self-hosted deployment automation system that listens for GitHub webhook events and triggers a full deployment pipeline on an AWS EC2 instance. When code is pushed to the main branch, the system automatically builds a new Docker image, restarts the container, and logs the deployment result.',
-    myRole:
-      'Sole developer — responsible for the full system design, FastAPI webhook server, Docker automation scripts, Nginx reverse proxy configuration, and AWS EC2 setup.',
+      'The AI advises, the human decides, and the runbook is the only thing allowed to act. An alarm triggers a Step Functions workflow, Bedrock writes a plain-English summary, an approval request goes to Telegram, and an approved decision runs a fixed SSM runbook that rolls the release back. The repository includes a CI workflow, deployment steps, cost notes and lessons learned.',
     learning:
-      'Webhook-driven deployment patterns, Docker container lifecycle management, and production server hardening on Linux.',
+      'Keeping an AI model in an advisory role, human-in-the-loop approval flows, and writing the whole stack as infrastructure as code.',
   },
   {
-    id: 'telecom',
-    cardTitle: 'Cloud-Native Telecom Platform',
-    modalTitle: 'Cloud-Native Telecom Management Platform',
-    status: 'in_progress',
+    id: 'travel-agent',
+    cardTitle: 'AWS Agentic Travel Assistant',
+    modalTitle: 'Production-Ready AI Travel Agent with Strands on AWS',
+    status: 'completed',
     description:
-      'A microservices-based telecom management platform built as part of the Digital Egypt Pioneers Initiative (DEPI). Simulates core telecom services including account management, billing, and usage monitoring — deployed on AWS using a fully automated DevOps pipeline.',
-    tech: [
-      'Jenkins',
-      'Docker',
-      'Kubernetes',
-      'Ansible',
-      'AWS EC2',
-      'AWS RDS',
-      'AWS S3',
-      'Prometheus',
-      'Grafana',
-      'Nginx',
-    ],
-    roleBadge: 'Team Leader / CI-CD Engineer',
-    github: '#',
+      'A serverless AI travel agent built with the Strands Agents SDK. It reasons over flight and weather data, remembers context, retrieves private knowledge with RAG, and acts through MCP servers behind a secure REST API.',
+    tech: ['Strands Agents SDK', 'Amazon Bedrock', 'API Gateway', 'Cognito', 'Lambda', 'S3', 'X-Ray', 'MCP', 'Python'],
+    roleBadge: 'Personal project',
+    github: 'https://github.com/mohamed-ibrahim09/AWS-Agentic-Travel-Assistant',
     modalIntro:
-      'A team project built as part of the Digital Egypt Pioneers Initiative (DEPI) internship program under the Ministry of Communications. The platform simulates the core services of a telecom operator — customers can manage accounts, subscribe to packages, recharge balance, monitor usage, and handle billing. Built on microservices architecture and deployed using modern DevOps practices.',
-    team: [
-      'Mohamed Elhadad — Team Leader / CI-CD Engineer',
-      'Fathy Ibrahim — AWS Cloud Infrastructure Engineer',
-      'Yossif Farahat — AWS Deployment & Kubernetes Engineer',
-      'Abdallah Elsayed — Automation & Ansible Engineer',
-      'Mohamed Hatem — Monitoring & Logging Engineer',
-      'Moamen Osama — Testing, Documentation & Deployment Support',
-    ],
-    myRole:
-      'As Team Leader and CI-CD Engineer, I am responsible for designing and implementing the Jenkins pipeline that automates building, testing, Docker image creation, pushing to registry, Kubernetes deployment, health checks, and rollback on failure. I also coordinate task distribution across the team and manage the GitHub repository workflow.',
-    pipeline:
-      'Developer → GitHub → Jenkins (Run Tests → Build Docker Images → Push to Registry → Deploy to Kubernetes → Health Checks → Rollback if Failed)',
-    deadline: 'Final Deadline: 20 June 2026',
+      'A code-first guide and implementation of an agentic system on AWS. The agent searches flights, fetches live weather from the National Weather Service, keeps conversation memory in S3, answers from a private knowledge base, and reserves or cancels attraction tickets through MCP servers. The REST API is protected with Cognito and every request is traced with CloudWatch and X-Ray.',
+    learning:
+      'Agent tool use, memory and RAG patterns, MCP, and securing and observing serverless AI workloads.',
+  },
+  {
+    id: 'backup-dr',
+    cardTitle: 'AWS Backup & Disaster Recovery',
+    modalTitle: 'Enterprise Backup & Disaster Recovery Solution on AWS',
+    status: 'completed',
+    description:
+      'A backup and disaster recovery pipeline using AWS Backup, KMS encryption, Backup Vault Lock and cross-Region replication, with a real restore of the workload into a second Region and validation of the result.',
+    tech: ['AWS Backup', 'KMS', 'Backup Vault Lock', 'EC2', 'Nginx', 'Linux'],
+    roleBadge: 'Personal project',
+    github: 'https://github.com/mohamed-ibrahim09/aws-backup-disaster-recovery',
+    modalIntro:
+      'Most backup documentation stops at "backup completed successfully". This project goes further: it backs up an Nginx workload on EC2 in us-east-1, replicates the backups to another Region, restores the workload there, and validates it end to end, with RPO and RTO considerations.',
+    learning:
+      'Recovery validation, immutable backups with Vault Lock, KMS key handling across Regions, and RPO/RTO thinking.',
+  },
+  {
+    id: 'cloud-dashboard',
+    cardTitle: 'AWS Cloud Infrastructure Dashboard',
+    modalTitle: 'AWS Cloud Infrastructure Dashboard',
+    status: 'completed',
+    description:
+      'A scalable web application on AWS using EC2, an Application Load Balancer and an Auto Scaling Group, with ACM, Route 53 and CloudWatch monitoring. Built with FastAPI, React and Nginx.',
+    tech: ['EC2', 'Application Load Balancer', 'Auto Scaling', 'CloudWatch', 'ACM', 'Route 53', 'FastAPI', 'React', 'Nginx'],
+    roleBadge: 'Personal project',
+    github: 'https://github.com/mohamed-ibrahim09/AWS-Cloud-Infrastructure-Dashboard',
+    modalIntro:
+      'A multi-AZ web application that demonstrates load balancing, EC2 Auto Scaling, CloudWatch monitoring and cloud-native deployment patterns, with a FastAPI backend, a React frontend and Nginx as reverse proxy.',
+    learning:
+      'Designing for availability across zones, scaling policies, TLS with ACM, and monitoring a live service.',
   },
 ];
 
@@ -181,7 +187,7 @@ const EXPERIENCE = [
     points: [
       'Built CI/CD pipelines for build, test and deployment, and containerized applications with Docker.',
       'Practiced configuration management with Ansible, Linux administration, monitoring and troubleshooting.',
-      'Led the team that built the Cloud-Native Telecom Platform (see Projects).',
+      'Team leader and CI/CD engineer on a six-person cloud-native telecom platform project (Jenkins, Docker, Kubernetes, AWS).',
     ],
   },
   {
@@ -781,7 +787,7 @@ export default function PortfolioPage() {
                   </div>
                   <div className="mt-8 flex flex-wrap justify-center gap-6 font-mono text-xs text-[color:var(--label)] lg:justify-start">
                     <span className="flex items-center gap-2">
-                      <span className="text-[#7C3AED]">◈</span> Tanta, Egypt
+                      <span className="text-[#7C3AED]">◈</span> Cairo, Egypt
                     </span>
                     <span className="flex items-center gap-2">
                       <span className="text-[#7C3AED]">◈</span> AI Student @ Menofia University
@@ -883,7 +889,7 @@ export default function PortfolioPage() {
           <div className="absolute inset-0 bg-radial-violet-bottom pointer-events-none opacity-50" />
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="reveal">
-              <SectionLabel>Projects &amp; Experience</SectionLabel>
+              <SectionLabel>Projects</SectionLabel>
               <SectionTitle>
                 What I&apos;ve <span className="text-[#7C3AED] dark:text-[#C4B5FD]">Built</span>
               </SectionTitle>
