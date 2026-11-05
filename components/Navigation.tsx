@@ -16,7 +16,6 @@ export function Navigation() {
   const navItems = [
     { label: 'Projects', href: '/#projects', section: 'projects' },
     { label: 'Experience', href: '/#experience', section: 'experience' },
-    { label: 'Blog', href: '/#blog', section: 'blog' },
     { label: 'Contact', href: '/#contact', section: 'contact' },
   ]
 
@@ -54,7 +53,7 @@ export function Navigation() {
       return
     }
 
-    const sections = ['projects', 'experience', 'blog', 'contact']
+    const sections = ['projects', 'experience', 'contact']
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries

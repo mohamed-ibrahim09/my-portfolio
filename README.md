@@ -6,10 +6,9 @@ Terminal-style portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS 
 
 ## What it shows
 
-- **Home:** typing terminal intro, about, skills, projects, experience, blog and contact on one page.
+- **Home:** typing terminal intro, about, skills, projects, experience and contact on one page.
 - **Projects:** AIOps Incident Copilot, AWS Agentic Travel Assistant, AWS Backup & Disaster Recovery, AWS Cloud Infrastructure Dashboard and AI deepfake detection. Each links to its GitHub repository.
 - **Experience:** ALGOcas, DEPI, NTI (Linux and CCNA) and GCI World, plus certifications and a timeline.
-- **Blog:** short DevOps and security articles under `/blog`.
 - **Contact:** form handled by Formspree.
 
 ## Stack
@@ -38,7 +37,6 @@ Open http://localhost:3000.
 | Home about, stats and skills | `app/page.tsx` |
 | Projects | `app/projects/page.tsx` |
 | Experience, certifications, timeline | `app/experience/page.tsx` |
-| Blog posts | `app/blog/page.tsx` and `app/blog/[slug]/page.tsx` |
 | Contact details and form | `app/contact/page.tsx` |
 | Page title, description, social preview | `app/layout.tsx`, `app/opengraph-image.tsx` |
 

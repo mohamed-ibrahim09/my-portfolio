@@ -2,7 +2,6 @@ import { Hero } from '@/components/Hero'
 import { SectionHeader } from '@/components/SectionHeader'
 import ProjectsPage from './projects/page'
 import ExperiencePage from './experience/page'
-import BlogPage from './blog/page'
 import ContactPage from './contact/page'
 
 export default function Home() {
@@ -87,10 +86,6 @@ export default function Home() {
 
       <section id="experience" className="min-h-screen border-t border-primary/10">
         <ExperiencePage />
-      </section>
-
-      <section id="blog" className="min-h-screen border-t border-primary/10">
-        <BlogPage />
       </section>
 
       <section id="contact" className="min-h-screen border-t border-primary/10">
