@@ -1,59 +1,50 @@
-# Mohamed Elhadad: Portfolio
+# Mohamed Elhadad: Matrix Dev Portfolio
 
-Personal portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS Certified Solutions Architect – Associate.
+Terminal-style portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS Certified Solutions Architect – Associate.
 
 **Live site:** https://mohamedelhadad.vercel.app
 
 ## What it shows
 
-- Experience: ALGOcas, DEPI, and NTI (Linux and CCNA) roles.
-- Projects: AI deepfake detection, an AIOps incident copilot, an agentic travel assistant, backup and disaster recovery on AWS, and a cloud infrastructure dashboard.
-- Skills, certifications, services, and a contact form.
-- Light and dark themes, with a downloadable CV.
+- **Home:** typing terminal intro, about, skills, projects, experience, blog and contact on one page.
+- **Projects:** AIOps Incident Copilot, AWS Agentic Travel Assistant, AWS Backup & Disaster Recovery, AWS Cloud Infrastructure Dashboard and AI deepfake detection. Each links to its GitHub repository.
+- **Experience:** ALGOcas, DEPI, NTI (Linux and CCNA) and GCI World, plus certifications and a timeline.
+- **Blog:** short DevOps and security articles under `/blog`.
+- **Contact:** form handled by Formspree.
 
 ## Stack
 
-- Next.js 15 (App Router) and React 19
-- TypeScript
-- Tailwind CSS
+- Next.js 16 (App Router), React 19, TypeScript
+- Tailwind CSS with a custom Matrix terminal theme, JetBrains Mono
+- Lucide icons, Vercel Analytics
 - Hosted on Vercel
-- Contact form handled by Formspree
 
 ## Run it locally
 
-Prerequisites: Node.js 20 or later.
+Prerequisites: Node.js 20 or later and pnpm 10.
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-The dev server runs at http://localhost:4028.
+Open http://localhost:3000.
 
-To check a production build:
+## Where to edit content
 
-```bash
-npm run build
-npm run serve
-```
-
-## Configuration
-
-| Variable | Purpose |
+| What | File |
 | --- | --- |
-| `NEXT_PUBLIC_FORMSPREE_URL` | Formspree endpoint for the contact form. See `.env.example`. |
-
-Set it in Vercel under Project → Settings → Environment Variables.
-
-## Project layout
-
-- `src/app/portfolio/page.tsx`: page content (projects, experience, skills and certifications are plain data arrays at the top).
-- `src/app/layout.tsx`: page metadata and Open Graph settings.
-- `public/`: CV, profile photo and social preview image.
+| Terminal intro | `components/Hero.tsx` |
+| Home about, stats and skills | `app/page.tsx` |
+| Projects | `app/projects/page.tsx` |
+| Experience, certifications, timeline | `app/experience/page.tsx` |
+| Blog posts | `app/blog/page.tsx` and `app/blog/[slug]/page.tsx` |
+| Contact details and form | `app/contact/page.tsx` |
+| Page title, description, social preview | `app/layout.tsx`, `app/opengraph-image.tsx` |
 
 ## Deployment
 
-Vercel deploys the `main` branch to production on every push.
+Vercel deploys the `main` branch to production on every push. Other branches get preview deployments.
 
 ## License
 

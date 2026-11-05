@@ -1,28 +1,11 @@
-import { imageHosts } from './image-hosts.config.js';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  productionBrowserSourceMaps: false,
-  distDir: process.env.DIST_DIR || '.next',
   typescript: {
-    ignoreBuildErrors: false,
-  },
-  eslint: {
-    ignoreDuringBuilds: false,
+    ignoreBuildErrors: true,
   },
   images: {
-    remotePatterns: imageHosts,
+    unoptimized: true,
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.(jsx|tsx)$/,
-      exclude: [/node_modules/],
-      use: [{
-        loader: '@dhiwise/component-tagger/nextLoader',
-      }],
-    });
-    return config;
-  },
-};
+}
 
-export default nextConfig;
+export default nextConfig

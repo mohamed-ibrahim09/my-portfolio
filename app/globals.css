@@ -1,0 +1,413 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* CLI Theme */
+  --background: #09090b;
+  --foreground: #a1a1aa;
+  --card: #09090b;
+  --card-foreground: #a1a1aa;
+  --popover: #09090b;
+  --popover-foreground: #a1a1aa;
+  --primary: #00ff9f;
+  --primary-foreground: #09090b;
+  --secondary: #a1a1aa;
+  --secondary-foreground: #09090b;
+  --muted: #27272a;
+  --muted-foreground: #71717a;
+  --accent: #00ff9f;
+  --accent-foreground: #09090b;
+  --destructive: #ff006e;
+  --destructive-foreground: #a1a1aa;
+  --border: #09090b;
+  --input: #09090b;
+  --ring: #00ff9f;
+  --chart-1: #00ff9f;
+  --chart-2: #00bfff;
+  --chart-3: #ff006e;
+  --chart-4: #ffbe0b;
+  --chart-5: #8338ec;
+  --radius: 0px;
+  --sidebar: #09090b;
+  --sidebar-foreground: #a1a1aa;
+  --sidebar-primary: #00ff9f;
+  --sidebar-primary-foreground: #09090b;
+  --sidebar-accent: #00ff9f;
+  --sidebar-accent-foreground: #09090b;
+  --sidebar-border: #09090b;
+  --sidebar-ring: #00ff9f;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #a1a1aa;
+  --card: #09090b;
+  --card-foreground: #a1a1aa;
+  --popover: #09090b;
+  --popover-foreground: #a1a1aa;
+  --primary: #00ff9f;
+  --primary-foreground: #09090b;
+  --secondary: #a1a1aa;
+  --secondary-foreground: #09090b;
+  --muted: #27272a;
+  --muted-foreground: #71717a;
+  --accent: #00ff9f;
+  --accent-foreground: #09090b;
+  --destructive: #ff006e;
+  --destructive-foreground: #a1a1aa;
+  --border: #09090b;
+  --input: #09090b;
+  --ring: #00ff9f;
+  --chart-1: #00ff9f;
+  --chart-2: #00bfff;
+  --chart-3: #ff006e;
+  --chart-4: #ffbe0b;
+  --chart-5: #8338ec;
+  --sidebar: #09090b;
+  --sidebar-foreground: #a1a1aa;
+  --sidebar-primary: #00ff9f;
+  --sidebar-primary-foreground: #09090b;
+  --sidebar-accent: #00ff9f;
+  --sidebar-accent-foreground: #09090b;
+  --sidebar-border: #09090b;
+  --sidebar-ring: #00ff9f;
+}
+
+@theme inline {
+  --font-sans: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Matrix animations */
+@keyframes matrixFall {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-cursor {
+  0%, 49% {
+    border-right-color: #00ff9f;
+  }
+  50%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: textFadeIn 0.6s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.cli-command {
+  color: #00ff9f;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.cli-output {
+  color: #a1a1aa;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.cli-prompt {
+  color: #a1a1aa;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  display: inline;
+}
+
+.cli-prompt::after {
+  content: ' $ ';
+  color: #00ff9f;
+}
+
+.typing-effect {
+  animation: typewriter 3s steps(40, end);
+  border-right: 2px solid #00ff9f;
+  animation: blink-cursor 0.6s infinite;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.terminal-link {
+  color: #00ff9f;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.terminal-link:hover {
+  color: #a1a1aa;
+}
+
+.fade-in-text {
+  animation: textFadeIn 0.8s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 64px;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover state for terminal links */
+.terminal-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.terminal-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #00ff9f;
+  transition: width 0.3s ease-out;
+}
+
+.terminal-link:hover::after {
+  width: 100%;
+}
+
+.nav-link {
+  color: #6b7280;
+  transition: all 0.25s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 1px;
+  background: #00ff41;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover span::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+}
+
+.nav-link-active {
+  color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+}
+
+.nav-link-active::after {
+  width: 100%;
+}
+
+.terminal-chip-link {
+  border: 1px solid #00ff41;
+  padding: 2px 8px;
+  color: #00ff41;
+  text-decoration: none;
+}
+
+.terminal-chip-link:hover {
+  background: #00ff4110;
+}
+
+.terminal-card {
+  border: 1px solid #166534;
+  border-radius: 2px;
+  padding: 24px;
+  background: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.terminal-card:hover {
+  border-color: #00ff41;
+  background: rgba(0, 255, 65, 0.03);
+}
+
+.hero-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 159, 0.04) 0px,
+    rgba(0, 255, 159, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.hero-noise {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.02), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(0, 255, 159, 0.04), transparent 30%);
+  mix-blend-mode: screen;
+}
+
+.hero-glow {
+  box-shadow: 0 0 40px rgba(0, 255, 70, 0.05);
+}
+
+.hero-glitch {
+  animation: textFadeIn 0.6s ease-out, glitch 0.35s steps(2, end) 1;
+}
