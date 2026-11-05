@@ -6,9 +6,10 @@ Terminal-style portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS 
 
 ## What it shows
 
-- **Home:** typing terminal intro, about, skills, projects, experience and contact on one page.
-- **Projects:** AIOps Incident Copilot, AWS Agentic Travel Assistant, AWS Backup & Disaster Recovery, AWS Cloud Infrastructure Dashboard and AI deepfake detection. Each links to its GitHub repository.
-- **Experience:** ALGOcas, DEPI, NTI (Linux and CCNA) and GCI World, plus certifications and a timeline.
+- **Home:** a terminal intro with a proof row and a live prompt (type `help`), then about and skills, projects, an ALGOcas case study, experience and contact.
+- **Command menu:** press Ctrl+K (⌘K on Mac) to jump anywhere or open a link.
+- **Projects:** five projects with architecture images and expandable details, each linked to GitHub.
+- **CV:** `/cv` is generated from the same data and prints cleanly. Use "Save as PDF".
 - **Contact:** form handled by Formspree.
 
 ## Stack
@@ -31,13 +32,15 @@ Open http://localhost:3000.
 
 ## Where to edit content
 
+Almost all content lives in one file: **`lib/data.ts`** (profile, proof stats, skills, projects, experience, certifications, education, languages). The home page, the terminal, the command menu and `/cv` all read from it.
+
 | What | File |
 | --- | --- |
-| Terminal intro | `components/Hero.tsx` |
-| Home about, stats and skills | `app/page.tsx` |
-| Projects | `app/projects/page.tsx` |
-| Experience, certifications, timeline | `app/experience/page.tsx` |
-| Contact details and form | `app/contact/page.tsx` |
+| Profile, projects, experience, skills | `lib/data.ts` |
+| Terminal intro and commands | `components/Hero.tsx` |
+| Ctrl+K command menu | `components/CommandMenu.tsx` |
+| ALGOcas case study | `components/CaseStudy.tsx` |
+| Project images | `public/projects/` |
 | Page title, description, social preview | `app/layout.tsx`, `app/opengraph-image.tsx` |
 
 ## Deployment

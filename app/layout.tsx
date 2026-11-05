@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 import { MatrixRain } from '@/components/MatrixRain'
+import { CommandMenu } from '@/components/CommandMenu'
 import './globals.css'
 
 const jetbrainsMono = JetBrains_Mono({ 
@@ -61,14 +62,21 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <body className="font-sans antialiased bg-background text-foreground relative overflow-x-hidden">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-background focus:px-3 focus:py-2"
+        >
+          Skip to content
+        </a>
         <MatrixRain />
         <div className="relative z-10">
           <Navigation />
-          <main className="min-h-screen">
+          <main id="main" className="min-h-screen">
             {children}
           </main>
           <Footer />
         </div>
+        <CommandMenu />
         <Analytics />
       </body>
     </html>

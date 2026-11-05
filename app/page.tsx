@@ -1,94 +1,56 @@
 import { Hero } from '@/components/Hero'
 import { SectionHeader } from '@/components/SectionHeader'
+import { CaseStudy } from '@/components/CaseStudy'
 import ProjectsPage from './projects/page'
 import ExperiencePage from './experience/page'
 import ContactPage from './contact/page'
+import { profile, skills } from '@/lib/data'
 
 export default function Home() {
   return (
     <>
       <Hero />
 
-      <section id="about" className="min-h-screen py-24 sm:py-32 border-t border-primary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            command="elhadad@portfolio:~$ cat about.txt"
-            description="DevOps Engineer at ALGOcas, based in Cairo, Egypt"
-          />
+      <section id="about" className="py-20 sm:py-24 border-t border-border">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader command="cat about.txt" title="About" description={`${profile.role} at ${profile.company}, based in ${profile.location}`} />
 
-          <div className="space-y-8 font-mono">
-            <p className="text-[#e2e8f0] leading-relaxed max-w-4xl">
-              Your deployments shouldn&apos;t depend on manual steps or undocumented processes. I&apos;m a DevOps Engineer at ALGOcas. I build AWS environments, CI/CD pipelines and Kubernetes deployments that behave the same way every time, with IAM, least privilege and monitoring built in from the start instead of bolted on later.
-            </p>
-            <p className="text-[#e2e8f0] leading-relaxed max-w-4xl">
-              I&apos;m an AWS Certified Solutions Architect – Associate, with networking (CCNA) and Linux administration training from NTI. On the side I explore how AI agents (Amazon Bedrock, AgentCore, MCP) fit into real infrastructure, and I write about it in Egyptian Arabic.
-            </p>
+          <div className="grid lg:grid-cols-5 gap-10 font-mono">
+            <div className="lg:col-span-2 space-y-5 text-[#e2e8f0] leading-relaxed">
+              <p>{profile.summary}</p>
+              <p className="text-foreground">{profile.summary2}</p>
+              <p className="text-foreground">
+                I started with networking (CCNA) and Linux at NTI, led a six-person DevOps team in the DEPI track, and now
+                migrate workloads into AWS at ALGOcas. I&apos;m finishing a Bachelor of AI with a cybersecurity
+                specialization, so security and AI stay close to everything I build.
+              </p>
+            </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { label: 'Current Role', value: 'DevOps @ ALGOcas' },
-                { label: 'AWS Certified', value: 'Solutions Architect' },
-                { label: 'Cost Cut in AWS Migration', value: '40%' },
-                { label: 'Systems Integrated on AWS', value: '5' },
-              ].map((stat) => (
-                <div key={stat.label} className="p-4 rounded-lg bg-card border border-border">
-                  <p className="text-[#00ff41] font-bold text-lg">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+            <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4 content-start">
+              {skills.map((group) => (
+                <div key={group.category} className="terminal-card !p-4">
+                  <p className="text-primary text-sm font-semibold mb-2">~/{group.category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}</p>
+                  <p className="text-sm text-[#e2e8f0] leading-relaxed">{group.items.join(' · ')}</p>
                 </div>
               ))}
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-[#00ff41] text-xl font-bold">Education & Certifications</h3>
-              <ul className="space-y-2 text-[#e2e8f0]">
-                <li>• AWS Certified Solutions Architect – Associate — Amazon Web Services</li>
-                <li>• Bachelor of Artificial Intelligence — Menofia University (2023–2027), Cybersecurity specialization</li>
-                <li>• CCNA — National Telecommunication Institute (2026)</li>
-                <li>• Linux Administration — National Telecommunication Institute (2026)</li>
-                <li>• DevOps Track — DEPI / Ministry of Communications (Dec 2025 – Jun 2026)</li>
-                <li>• GCI World 2026 — Matsuo-Iwasawa Lab, University of Tokyo (April–July 2026)</li>
-                <li>• AI Fluency Framework &amp; Foundations — Anthropic (2026)</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-[#00ff41] text-xl font-bold mb-4">Skills Grid</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  { category: 'AWS', items: ['EC2', 'VPC', 'IAM', 'S3', 'Lambda', 'SQS', 'SNS', 'DynamoDB', 'Step Functions', 'CloudFormation'] },
-                  { category: 'Containers & CI/CD', items: ['Docker', 'Kubernetes', 'Jenkins', 'GitHub Actions', 'Ansible', 'Nginx'] },
-                  { category: 'Observability', items: ['CloudWatch', 'X-Ray', 'SNS Alerting', 'Prometheus', 'Grafana'] },
-                  { category: 'Security', items: ['IAM & Least Privilege', 'KMS', 'Secrets Manager', 'Backup Vault Lock', 'Cybersecurity Principles'] },
-                  { category: 'AI on AWS', items: ['Amazon Bedrock', 'AgentCore', 'Strands Agents', 'MCP', 'RAG', 'PyTorch'] },
-                  { category: 'Languages & Systems', items: ['Python', 'Bash', 'TypeScript', 'SQL', 'Linux (Ubuntu/CentOS)', 'Cisco Networking'] },
-                ].map((group) => (
-                  <div key={group.category} className="p-4 rounded-lg bg-card border border-border">
-                    <p className="text-[#00ff41] font-semibold mb-2">{group.category}</p>
-                    <p className="text-sm text-[#e2e8f0]">{group.items.join(' • ')}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-[#00ff41] text-xl font-bold">My Journey</h3>
-              <p className="text-[#e2e8f0] leading-relaxed">
-                I started with networking (CCNA) and Linux administration at NTI, then built CI/CD pipelines, containers and Kubernetes deployments in the DEPI DevOps track, where I led a six-person team. Today at ALGOcas I migrate workloads into AWS and build event-driven integrations that are reliable by design, with retries, dead-letter queues, tracing and alerting. I&apos;m studying for a Bachelor of Artificial Intelligence with a cybersecurity specialization at Menofia University, so security and AI stay close to everything I build.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" className="min-h-screen border-t border-primary/10">
+      <section id="projects" className="border-t border-border">
         <ProjectsPage />
       </section>
 
-      <section id="experience" className="min-h-screen border-t border-primary/10">
+      <section id="case-study" className="border-t border-border">
+        <CaseStudy />
+      </section>
+
+      <section id="experience" className="border-t border-border">
         <ExperiencePage />
       </section>
 
-      <section id="contact" className="min-h-screen border-t border-primary/10">
+      <section id="contact" className="border-t border-border">
         <ContactPage />
       </section>
     </>

@@ -11,20 +11,20 @@
   --card-foreground: #a1a1aa;
   --popover: #09090b;
   --popover-foreground: #a1a1aa;
-  --primary: #00ff9f;
+  --primary: #00ff41;
   --primary-foreground: #09090b;
   --secondary: #a1a1aa;
   --secondary-foreground: #09090b;
   --muted: #27272a;
-  --muted-foreground: #71717a;
-  --accent: #00ff9f;
+  --muted-foreground: #8b8b94;
+  --accent: #00ff41;
   --accent-foreground: #09090b;
   --destructive: #ff006e;
   --destructive-foreground: #a1a1aa;
-  --border: #09090b;
-  --input: #09090b;
-  --ring: #00ff9f;
-  --chart-1: #00ff9f;
+  --border: #1c3323;
+  --input: #1c3323;
+  --ring: #00ff41;
+  --chart-1: #00ff41;
   --chart-2: #00bfff;
   --chart-3: #ff006e;
   --chart-4: #ffbe0b;
@@ -32,12 +32,12 @@
   --radius: 0px;
   --sidebar: #09090b;
   --sidebar-foreground: #a1a1aa;
-  --sidebar-primary: #00ff9f;
+  --sidebar-primary: #00ff41;
   --sidebar-primary-foreground: #09090b;
-  --sidebar-accent: #00ff9f;
+  --sidebar-accent: #00ff41;
   --sidebar-accent-foreground: #09090b;
-  --sidebar-border: #09090b;
-  --sidebar-ring: #00ff9f;
+  --sidebar-border: #1c3323;
+  --sidebar-ring: #00ff41;
 }
 
 .dark {
@@ -47,32 +47,32 @@
   --card-foreground: #a1a1aa;
   --popover: #09090b;
   --popover-foreground: #a1a1aa;
-  --primary: #00ff9f;
+  --primary: #00ff41;
   --primary-foreground: #09090b;
   --secondary: #a1a1aa;
   --secondary-foreground: #09090b;
   --muted: #27272a;
-  --muted-foreground: #71717a;
-  --accent: #00ff9f;
+  --muted-foreground: #8b8b94;
+  --accent: #00ff41;
   --accent-foreground: #09090b;
   --destructive: #ff006e;
   --destructive-foreground: #a1a1aa;
-  --border: #09090b;
-  --input: #09090b;
-  --ring: #00ff9f;
-  --chart-1: #00ff9f;
+  --border: #1c3323;
+  --input: #1c3323;
+  --ring: #00ff41;
+  --chart-1: #00ff41;
   --chart-2: #00bfff;
   --chart-3: #ff006e;
   --chart-4: #ffbe0b;
   --chart-5: #8338ec;
   --sidebar: #09090b;
   --sidebar-foreground: #a1a1aa;
-  --sidebar-primary: #00ff9f;
+  --sidebar-primary: #00ff41;
   --sidebar-primary-foreground: #09090b;
-  --sidebar-accent: #00ff9f;
+  --sidebar-accent: #00ff41;
   --sidebar-accent-foreground: #09090b;
-  --sidebar-border: #09090b;
-  --sidebar-ring: #00ff9f;
+  --sidebar-border: #1c3323;
+  --sidebar-ring: #00ff41;
 }
 
 @theme inline {
@@ -210,7 +210,7 @@
 
 @keyframes blink-cursor {
   0%, 49% {
-    border-right-color: #00ff9f;
+    border-right-color: #00ff41;
   }
   50%, 100% {
     border-right-color: transparent;
@@ -235,7 +235,7 @@
 }
 
 .cli-command {
-  color: #00ff9f;
+  color: #00ff41;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 16px;
   line-height: 1.8;
@@ -260,19 +260,19 @@
 
 .cli-prompt::after {
   content: ' $ ';
-  color: #00ff9f;
+  color: #00ff41;
 }
 
 .typing-effect {
   animation: typewriter 3s steps(40, end);
-  border-right: 2px solid #00ff9f;
+  border-right: 2px solid #00ff41;
   animation: blink-cursor 0.6s infinite;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .terminal-link {
-  color: #00ff9f;
+  color: #00ff41;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.2s;
@@ -316,7 +316,7 @@ select {
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #00ff9f;
+  background-color: #00ff41;
   transition: width 0.3s ease-out;
 }
 
@@ -390,8 +390,8 @@ select {
 .hero-scanlines {
   background: repeating-linear-gradient(
     to bottom,
-    rgba(0, 255, 159, 0.04) 0px,
-    rgba(0, 255, 159, 0.04) 1px,
+    rgba(0, 255, 65, 0.04) 0px,
+    rgba(0, 255, 65, 0.04) 1px,
     transparent 1px,
     transparent 4px
   );
@@ -400,14 +400,71 @@ select {
 .hero-noise {
   background-image:
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.02), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(0, 255, 159, 0.04), transparent 30%);
+    radial-gradient(circle at 80% 0%, rgba(0, 255, 65, 0.04), transparent 30%);
   mix-blend-mode: screen;
 }
 
 .hero-glow {
-  box-shadow: 0 0 40px rgba(0, 255, 70, 0.05);
+  box-shadow: 0 0 40px rgba(0, 255, 65, 0.05);
 }
 
 .hero-glitch {
   animation: textFadeIn 0.6s ease-out, glitch 0.35s steps(2, end) 1;
+}
+
+/* ── Polish layer ─────────────────────────────────────────────── */
+
+/* Keyboard focus that matches the terminal theme */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(0, 255, 65, 0.25);
+  color: #ffffff;
+}
+
+/* Blinking block cursor used by the logo and the prompt */
+.cursor-block {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--primary);
+  animation: blink 1s step-end infinite;
+}
+
+/* Section titles rendered as shell commands */
+.term-heading {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #e2e8f0;
+}
+
+.term-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Clean printing for the /cv page */
+@media print {
+  @page { margin: 14mm; }
+  html, body { background: #ffffff !important; color: #111111 !important; }
+  .no-print, nav, footer, canvas { display: none !important; }
 }

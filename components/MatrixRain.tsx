@@ -2,106 +2,68 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+const CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
+const FONT_SIZE = 14
+const FPS = 24
+
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [enabled, setEnabled] = useState(true)
+  const [enabled, setEnabled] = useState(false)
 
+  // Desktop only, and never for people who prefer reduced motion.
   useEffect(() => {
-    const updateEnabled = () => {
-      setEnabled(window.innerWidth >= 768)
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setEnabled(window.innerWidth >= 768 && !motion.matches)
+    update()
+    window.addEventListener('resize', update)
+    motion.addEventListener('change', update)
+    return () => {
+      window.removeEventListener('resize', update)
+      motion.removeEventListener('change', update)
     }
-
-    updateEnabled()
-    window.addEventListener('resize', updateEnabled)
-    return () => window.removeEventListener('resize', updateEnabled)
   }, [])
 
   useEffect(() => {
     if (!enabled) return
-
     const canvas = canvasRef.current
-    if (!canvas) return
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx) return
 
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    // Set canvas size
-    const resizeCanvas = () => {
+    let columns = 0
+    let drops: number[] = []
+    const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+      columns = Math.floor(canvas.width / FONT_SIZE)
+      drops = Array.from({ length: columns }, () => Math.floor((Math.random() * canvas.height) / FONT_SIZE))
     }
+    resize()
+    window.addEventListener('resize', resize)
 
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+    let raf = 0
+    let last = 0
+    const draw = (now: number) => {
+      raf = requestAnimationFrame(draw)
+      if (document.hidden || now - last < 1000 / FPS) return
+      last = now
 
-    // Matrix characters - mix of hex and binary
-    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
-    const fontSize = 14
-    const columns = Math.floor(canvas.width / fontSize)
-
-    // Create array of drop positions
-    const drops: number[] = Array(columns).fill(0)
-
-    // Color gradient for Matrix effect
-    const colors = [
-      'rgba(63, 185, 80, 0.1)',   // Very dim green
-      'rgba(63, 185, 80, 0.2)',
-      'rgba(63, 185, 80, 0.3)',
-      'rgba(63, 185, 80, 0.5)',
-      'rgba(63, 185, 80, 0.8)',
-      '#3fb950',                   // Bright green for head
-    ]
-
-    let frameCount = 0
-    const frameRate = 30 // 30 fps for smooth but not too fast animation
-
-    const draw = () => {
-      // Control frame rate
-      if (frameCount % (60 / frameRate) !== 0) {
-        frameCount++
-        requestAnimationFrame(draw)
-        return
-      }
-
-      // Fade effect
-      ctx.fillStyle = 'rgba(13, 17, 23, 0.05)'
+      ctx.fillStyle = 'rgba(9, 9, 11, 0.08)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Draw characters
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`
+      ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`
       ctx.textBaseline = 'bottom'
 
       for (let i = 0; i < columns; i++) {
-        // Random character
-        const char = chars[Math.floor(Math.random() * chars.length)]
-
-        // Get position
-        const x = i * fontSize
-        const y = drops[i] * fontSize
-
-        // Color based on position - gradient effect
-        const colorIndex = Math.floor((Math.sin(frameCount * 0.01 + i) * 0.5 + 0.5) * colors.length)
-        ctx.fillStyle = colors[colorIndex] || colors[colors.length - 1]
-
-        // Draw character
-        ctx.fillText(char, x, y)
-
-        // Reset drop randomly
-        if (y > canvas.height || Math.random() < 0.01) {
-          drops[i] = 0
-        } else {
-          drops[i]++
-        }
+        const y = drops[i] * FONT_SIZE
+        ctx.fillStyle = Math.random() < 0.04 ? 'rgba(180, 255, 200, 0.9)' : 'rgba(0, 255, 65, 0.55)'
+        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y)
+        drops[i] = y > canvas.height && Math.random() > 0.975 ? 0 : drops[i] + 1
       }
-
-      frameCount++
-      requestAnimationFrame(draw)
     }
-
-    draw()
+    raf = requestAnimationFrame(draw)
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
     }
   }, [enabled])
 
@@ -110,7 +72,8 @@ export function MatrixRain() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-20"
+      aria-hidden
+      className="fixed inset-0 w-full h-full pointer-events-none opacity-[0.12]"
       style={{ zIndex: 1 }}
     />
   )

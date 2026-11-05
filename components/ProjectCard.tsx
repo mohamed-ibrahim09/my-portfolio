@@ -1,153 +1,75 @@
-import Link from 'next/link'
-import { Github, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
+import { Github, ChevronRight } from 'lucide-react'
+import type { Project } from '@/lib/data'
 
-interface ProjectCardProps {
-  name: string
-  description: string
-  tags: string[]
-  stats?: string[]
-  role?: string
-  achievements?: string[]
-  github?: string
-  demo?: string
-  status?: string
-  featured?: boolean
-  team?: Array<{ name: string; role: string }>
-}
-
-export function ProjectCard({
-  name,
-  description,
-  tags,
-  stats,
-  role,
-  achievements,
-  github,
-  demo,
-  status,
-  featured = false,
-  team,
-}: ProjectCardProps) {
-  const containerClasses = featured
-    ? 'col-span-1 md:col-span-2'
-    : 'col-span-1'
+export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
+  const { name, summary, details, tags, github, image, note, category } = project
 
   return (
-    <div
-      className={`${containerClasses} terminal-card border-l-2 border-l-transparent hover:border-l-primary group`}
-    >
-      <div className="flex items-start justify-between mb-4">
-        <h3 className="text-lg sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-          {name}
-        </h3>
-        {status && (
-          <span className={`text-xs font-semibold px-3 py-1 rounded ${
-            status === 'In Progress'
-              ? 'bg-secondary/10 text-secondary'
-              : 'bg-primary/10 text-primary'
-          }`}>
-            [{status}]
-          </span>
-        )}
-      </div>
-
-      {role && (
-        <p className="text-sm text-secondary font-mono mb-3">
-          Role: {role}
-        </p>
+    <article className="terminal-card !p-0 flex flex-col group overflow-hidden">
+      {image && (
+        <a
+          href={image.src}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block relative aspect-[16/9] bg-white/95 border-b border-border overflow-hidden"
+          aria-label={`Open the ${name} diagram full size`}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            priority={priority}
+            className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </a>
       )}
 
-      <p className="text-foreground mb-4 leading-relaxed">
-        {description}
-      </p>
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <h3 className="text-lg sm:text-xl font-bold text-[#e2e8f0] group-hover:text-primary transition-colors">{name}</h3>
+          <span className="term-badge text-primary/80 shrink-0">{category}</span>
+        </div>
 
-      {/* Achievements */}
-      {achievements && achievements.length > 0 && (
-        <div className="mb-4 text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground mb-2">Key Results:</p>
-          <ul className="space-y-1">
-            {achievements.map((achievement, idx) => (
-              <li key={idx} className="flex items-start gap-2">
-                <span className="text-primary mt-1">►</span>
-                <span>{achievement}</span>
+        <p className="text-foreground leading-relaxed mb-4">{summary}</p>
+
+        <details className="mb-4 text-sm text-muted-foreground [&_svg]:open:rotate-90">
+          <summary className="cursor-pointer list-none inline-flex items-center gap-1 text-primary/90 hover:text-primary select-none">
+            <ChevronRight size={14} className="transition-transform" aria-hidden />
+            details
+          </summary>
+          <ul className="mt-3 space-y-2">
+            {details.map((d) => (
+              <li key={d} className="flex gap-2">
+                <span className="text-primary" aria-hidden>►</span>
+                <span>{d}</span>
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        </details>
 
-      {/* Team Members */}
-      {team && team.length > 0 && (
-        <div className="mb-4 text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground mb-2">Team:</p>
-          <ul className="space-y-1">
-            {team.map((member, idx) => (
-              <li key={idx} className="flex items-start gap-2">
-                <span className="text-secondary">•</span>
-                <span><strong>{member.name}</strong> — {member.role}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="inline-block px-3 py-1 text-xs border border-accent text-accent bg-accent/5 hover:bg-accent/10 transition-colors"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Stats */}
-      {stats && (
-        <div className="mb-6 text-xs text-muted-foreground font-mono border-t border-border pt-4 mt-4">
-          {stats.map((stat, idx) => (
-            <span key={idx} className="inline-block mr-4">
-              <span className="text-primary">$</span> {stat}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {tags.map((tag) => (
+            <span key={tag} className="px-2 py-0.5 text-xs border border-primary/30 text-primary/90">
+              {tag}
             </span>
           ))}
         </div>
-      )}
 
-      {/* Buttons */}
-      <div className="flex gap-3 flex-wrap">
-        {github && github !== 'Coming Soon' && (
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3">
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary font-mono text-sm hover:bg-primary hover:text-background transition-all duration-200"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary text-sm hover:bg-primary hover:text-background"
           >
-            <Github size={16} />
-            [GitHub]
+            <Github size={16} aria-hidden />
+            [view source]
           </a>
-        )}
-        {github === 'Coming Soon' && (
-          <button
-            disabled
-            className="inline-flex items-center gap-2 px-4 py-2 border-2 border-muted text-muted-foreground font-mono text-sm opacity-50 cursor-not-allowed"
-          >
-            <Github size={16} />
-            [GitHub - Coming Soon]
-          </button>
-        )}
-        {demo && demo !== 'Coming Soon' && demo !== '#' && (
-          <a
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 border-2 border-secondary text-secondary font-mono text-sm hover:bg-secondary hover:text-background transition-all duration-200"
-          >
-            <ExternalLink size={16} />
-            [Live Demo]
-          </a>
-        )}
+          {note && <span className="text-xs text-muted-foreground">{note}</span>}
+        </div>
       </div>
-    </div>
+    </article>
   )
 }

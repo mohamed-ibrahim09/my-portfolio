@@ -11,6 +11,9 @@ const nextConfig = {
     return [
       { source: '/blog', destination: '/', permanent: false },
       { source: '/blog/:slug*', destination: '/', permanent: false },
+      // About and Featured were merged into the home page.
+      { source: '/about', destination: '/#about', permanent: true },
+      { source: '/featured', destination: '/#experience', permanent: true },
     ]
   },
 }
