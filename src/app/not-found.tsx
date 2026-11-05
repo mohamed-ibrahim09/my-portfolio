@@ -76,7 +76,7 @@ export default function NotFound() {
       <footer className="mt-auto border-t border-[color:var(--glass-border)] px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="font-mono text-xs text-[color:var(--label)]">
-            © 2026 Mohamed Elhadad · Junior DevOps &amp; Cloud Engineer
+            © 2026 Mohamed Elhadad · DevOps Engineer
           </p>
           <div className="flex items-center gap-2 font-mono text-xs text-[color:var(--label)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#7C3AED] pulse-dot" />

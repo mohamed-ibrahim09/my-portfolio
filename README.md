@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# Mohamed Elhadad: Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Mohamed Elhadad, DevOps Engineer at ALGOcas and AWS Certified Solutions Architect – Associate.
 
-Currently, two official plugins are available:
+**Live site:** https://mohamedelhadad.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What it shows
 
-## React Compiler
+- Experience: ALGOcas, DEPI, and NTI (Linux and CCNA) roles.
+- Projects: AI deepfake detection, MiniCloud deployment automation, and a cloud-native telecom platform built with Jenkins, Docker, Kubernetes and AWS.
+- Skills, certifications, services, and a contact form.
+- Light and dark themes, with a downloadable CV.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+- Next.js 15 (App Router) and React 19
+- TypeScript
+- Tailwind CSS
+- Hosted on Vercel
+- Contact form handled by Formspree
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Run it locally
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Prerequisites: Node.js 20 or later.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The dev server runs at http://localhost:4028.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To check a production build:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run serve
 ```
+
+## Configuration
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_FORMSPREE_URL` | Formspree endpoint for the contact form. See `.env.example`. |
+
+Set it in Vercel under Project → Settings → Environment Variables.
+
+## Project layout
+
+- `src/app/portfolio/page.tsx`: page content (projects, experience, skills and certifications are plain data arrays at the top).
+- `src/app/layout.tsx`: page metadata and Open Graph settings.
+- `public/`: CV, profile photo and social preview image.
+
+## Deployment
+
+Vercel deploys the `main` branch to production on every push.
+
+## License
+
+All rights reserved. The code is public for viewing. Please ask before reusing it.

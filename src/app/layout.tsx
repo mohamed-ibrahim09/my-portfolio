@@ -9,13 +9,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mohamedelhadad.vercel.app'),
-  title: 'Mohamed Elhadad — Junior DevOps & Cloud Engineer',
+  title: 'Mohamed Elhadad — DevOps Engineer | AWS, CI/CD, Kubernetes',
   description:
-    'AI student with a Cybersecurity specialization building DevOps and cloud skills. Open to remote internships and freelance work.',
+    'DevOps Engineer at ALGOcas and AWS Certified Solutions Architect – Associate. I build AWS environments, CI/CD pipelines and Kubernetes deployments with security and monitoring built in. Open to AWS freelance projects.',
   openGraph: {
-    title: 'Mohamed Elhadad — Junior DevOps & Cloud Engineer',
+    title: 'Mohamed Elhadad — DevOps Engineer | AWS, CI/CD, Kubernetes',
     description:
-      'AI student with a Cybersecurity specialization building DevOps and cloud skills.',
+      'DevOps Engineer at ALGOcas. AWS Certified Solutions Architect – Associate.',
     url: 'https://mohamedelhadad.vercel.app',
     siteName: 'Mohamed Elhadad',
     images: [{ url: '/og-preview.png', width: 1200, height: 630, alt: 'Mohamed Elhadad Portfolio' }],

@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
               Mohamed <span style={{ color: '#C4B5FD' }}>Elhadad</span>
             </div>
             <div style={{ fontSize: 28, color: 'rgba(226,232,240,0.75)' }}>
-              Junior DevOps & Cloud Engineer · AWS · Docker · CI/CD · Automation
+              DevOps Engineer @ ALGOcas · AWS · Kubernetes · CI/CD
             </div>
           </div>
         </div>

@@ -158,12 +158,61 @@ const PROJECTS: Project[] = [
   },
 ];
 
+const EXPERIENCE = [
+  {
+    role: 'DevOps Engineer',
+    org: 'ALGOcas (Algo - Cloud Advanced Solutions)',
+    period: 'Sep 2026 – Present',
+    place: 'Cairo, Egypt · Hybrid · Full-time',
+    summary: 'DevOps on AWS across migration, system integration, CI/CD, Kubernetes and cloud security.',
+    points: [
+      'Migrated workloads from on-prem and other clouds into AWS, consolidating the infrastructure in one place and cutting cost by 40%.',
+      'Built an event-driven middleware on AWS that connects 5 systems across on-prem, Azure and SaaS (ITSM, CRM, e-commerce) through one ingest layer, replacing point-to-point integrations.',
+      'Made it reliable by design: per-destination SQS queues with dead-letter queues, idempotent processing in DynamoDB and event replay, so failed messages are retried and recoverable instead of lost.',
+      'Added end-to-end tracing and alerting (correlation IDs, CloudWatch alarms, SNS, X-Ray), with IAM, KMS and Secrets Manager protecting access and credentials.',
+    ],
+  },
+  {
+    role: 'DevOps Track Trainee',
+    org: 'Digital Egypt Pioneers Initiative (DEPI)',
+    period: 'Dec 2025 – Jun 2026',
+    place: 'Hybrid · Internship',
+    summary: 'Hands-on DevOps training in automation, CI/CD and system reliability.',
+    points: [
+      'Built CI/CD pipelines for build, test and deployment, and containerized applications with Docker.',
+      'Practiced configuration management with Ansible, Linux administration, monitoring and troubleshooting.',
+      'Led the team that built the Cloud-Native Telecom Platform (see Projects).',
+    ],
+  },
+  {
+    role: 'Linux Administrator Trainee',
+    org: 'National Telecommunication Institute (NTI)',
+    period: 'Apr 2026 – Jun 2026',
+    place: 'Remote · Internship',
+    summary: 'Linux administration on Ubuntu and CentOS.',
+    points: [
+      'User and permission management, services and processes, monitoring, SSH and access control.',
+      'Bash scripting and package management with apt and yum.',
+    ],
+  },
+  {
+    role: 'CCNA Trainee',
+    org: 'National Telecommunication Institute (NTI)',
+    period: 'Nov 2025 – Feb 2026',
+    place: 'Remote · Internship',
+    summary: 'Cisco networking fundamentals and configuration.',
+    points: [
+      'Subnetting, VLANs, static routing, RIP and OSPF basics, ACLs, and troubleshooting in Cisco Packet Tracer.',
+    ],
+  },
+];
+
 const SKILLS = [
   {
     category: 'Cloud',
     icon: '☁',
-    proficient: ['AWS EC2', 'S3', 'IAM', 'VPC', 'Security Groups'],
-    familiar: ['Load Balancing', 'Auto Scaling'],
+    proficient: ['AWS EC2', 'S3', 'IAM', 'VPC', 'SQS', 'SNS', 'DynamoDB', 'KMS', 'Secrets Manager'],
+    familiar: ['Load Balancing', 'Auto Scaling', 'Amazon Bedrock', 'AgentCore', 'MCP'],
   },
   {
     category: 'Containers & Orchestration',
@@ -186,7 +235,7 @@ const SKILLS = [
   {
     category: 'Monitoring & Logging',
     icon: '◈',
-    proficient: ['Prometheus', 'Grafana'],
+    proficient: ['Prometheus', 'Grafana', 'CloudWatch', 'X-Ray'],
     familiar: ['Log Analysis'],
   },
   {
@@ -246,12 +295,17 @@ const EDUCATION = [
   },
 ];
 
-const CERTIFICATIONS = [
+const CERTIFICATIONS: { title: string; issuer: string; year?: string; featured: boolean; note?: string }[] = [
+  {
+    title: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services',
+    featured: true,
+  },
   {
     title: 'AI Fluency Framework & Foundations',
     issuer: 'Anthropic',
     year: '2026',
-    featured: true,
+    featured: false,
     note: 'Issued by the creators of Claude AI',
   },
   {
@@ -308,11 +362,11 @@ const TERMINAL_LINES = [
   { text: '$ whoami', delay: 0, color: 'text-[#C4B5FD]' },
   { text: 'Mohamed Elhadad', delay: 400, color: 'text-white' },
   { text: '$ cat role.txt', delay: 900, color: 'text-[#C4B5FD]' },
-  { text: 'Junior DevOps & Cloud Engineer', delay: 1300, color: 'text-[#86EFAC]' },
+  { text: 'DevOps Engineer @ ALGOcas', delay: 1300, color: 'text-[#86EFAC]' },
   { text: '$ cat focus.txt', delay: 1800, color: 'text-[#C4B5FD]' },
-  { text: 'Automation · Cloud · Containers · Security', delay: 2200, color: 'text-[rgba(226,232,240,0.7)]' },
+  { text: 'AWS · CI/CD · Kubernetes · Cloud Security', delay: 2200, color: 'text-[rgba(226,232,240,0.7)]' },
   { text: '$ status', delay: 2700, color: 'text-[#C4B5FD]' },
-  { text: '✓ Available for remote internships & freelance work', delay: 3100, color: 'text-[#86EFAC]' },
+  { text: '✓ Open to DevOps roles & AWS freelance projects', delay: 3100, color: 'text-[#86EFAC]' },
 ];
 
 function TerminalBlock() {
@@ -639,6 +693,7 @@ export default function PortfolioPage() {
             {[
               { label: 'Home', href: '#top' },
               { label: 'Skills', href: '#skills' },
+              { label: 'Experience', href: '#experience' },
               { label: 'Projects', href: '#projects' },
               { label: 'Services', href: '#services' },
             ].map((link) => (
@@ -693,14 +748,14 @@ export default function PortfolioPage() {
                 </div>
                 <div className="text-center lg:text-left w-full">
                   <p className="mb-4 font-mono text-xs uppercase tracking-widest text-[color:var(--label)]">
-                    Junior DevOps &amp; Cloud Engineer
+                    DevOps Engineer @ ALGOcas
                   </p>
                   <h1 className="mb-6 font-mono text-4xl font-bold leading-tight tracking-tight text-[color:var(--body)] md:text-6xl">
                     Mohamed <span className="text-[#7C3AED] text-glow dark:text-[#C4B5FD]">Elhadad</span>
                   </h1>
                   <p className="mb-8 max-w-lg font-sans text-lg leading-relaxed text-[color:var(--body-muted)]">
-                    AI student with a Cybersecurity specialization — building DevOps and cloud skills at the intersection
-                    of security and automation. Open to remote internships and freelance DevOps work.
+                    I build AWS environments, CI/CD pipelines and Kubernetes deployments that behave the same way every time,
+                    with IAM, least privilege and monitoring built in from the start. AWS Certified Solutions Architect – Associate.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                     <a
@@ -732,7 +787,7 @@ export default function PortfolioPage() {
                       <span className="text-[#7C3AED]">◈</span> AI Student @ Menofia University
                     </span>
                     <span className="flex items-center gap-2">
-                      <span className="text-[#86EFAC]">●</span> Available for remote internships &amp; freelance work
+                      <span className="text-[#86EFAC]">●</span> Open to DevOps roles &amp; AWS freelance projects
                     </span>
                   </div>
                 </div>
@@ -789,6 +844,35 @@ export default function PortfolioPage() {
                       ))}
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section id="experience">
+          <div className="max-w-4xl mx-auto">
+            <div className="reveal">
+              <SectionLabel>Experience</SectionLabel>
+              <SectionTitle>
+                Where I&apos;ve <span className="text-[#7C3AED] dark:text-[#C4B5FD]">Worked</span>
+              </SectionTitle>
+            </div>
+            <div className="space-y-6">
+              {EXPERIENCE.map((job) => (
+                <div key={`${job.org}-${job.period}`} className="reveal glass-panel rounded-lg p-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="font-mono text-lg font-bold text-[color:var(--body)]">{job.role}</h3>
+                    <span className="font-mono text-xs text-[color:var(--label)]">{job.period}</span>
+                  </div>
+                  <p className="mt-1 font-mono text-sm text-[#7C3AED] dark:text-[#C4B5FD]">{job.org}</p>
+                  <p className="mt-1 font-mono text-xs text-[color:var(--label)]">{job.place}</p>
+                  <p className="mt-3 font-sans text-sm text-[color:var(--body-muted)]">{job.summary}</p>
+                  <ul className="mt-3 list-inside list-disc space-y-1.5 font-sans text-sm leading-relaxed text-[color:var(--body-muted)]">
+                    {job.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -939,7 +1023,7 @@ export default function PortfolioPage() {
                       )}
                       <h4 className="font-mono text-sm font-bold text-[color:var(--body)]">{cert.title}</h4>
                       <p className="mt-1 font-mono text-xs text-[color:var(--body-muted)]">{cert.issuer}</p>
-                      <p className="mt-2 font-mono text-xs text-[color:var(--label)]">{cert.year}</p>
+                      {cert.year && <p className="mt-2 font-mono text-xs text-[color:var(--label)]">{cert.year}</p>}
                       {cert.note && (
                         <p className="mt-2 font-mono text-[11px] leading-relaxed text-[#c2410c] dark:text-[#fdba74]">{cert.note}</p>
                       )}
@@ -1010,7 +1094,7 @@ export default function PortfolioPage() {
                 Let&apos;s <span className="text-[#7C3AED] dark:text-[#C4B5FD]">Connect</span>
               </SectionTitle>
               <p className="mx-auto max-w-lg font-sans text-[color:var(--body-muted)]">
-                Open to new opportunities, collaborations, and interesting projects. Drop a message or reach out directly.
+                Hiring for DevOps or cloud, or have an AWS project that needs a freelancer? Message me here or by email. Drop a message or reach out directly.
               </p>
             </div>
 
@@ -1097,7 +1181,7 @@ export default function PortfolioPage() {
       <footer className="border-t border-[color:var(--glass-border)] px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="font-mono text-xs text-[color:var(--label)]">
-            © 2026 Mohamed Elhadad · Junior DevOps &amp; Cloud Engineer
+            © 2026 Mohamed Elhadad · DevOps Engineer
           </p>
           <div className="flex items-center gap-2 font-mono text-xs text-[color:var(--label)]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] pulse-dot" />

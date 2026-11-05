@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Mohamed Elhadad',
     short_name: 'Mohamed',
     description:
-      'Portfolio of Mohamed Elhadad — Junior DevOps and Cloud Engineer focused on automation, containers, CI/CD, and AWS infrastructure.',
+      'Portfolio of Mohamed Elhadad — DevOps Engineer focused on AWS, CI/CD, Kubernetes, and cloud security.',
     start_url: '/',
     display: 'standalone',
     background_color: '#09090B',
